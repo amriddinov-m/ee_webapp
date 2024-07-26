@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from bot.models import Project, SubProject, Discipline, Manpower, Demand, DemandDetail, Certification, \
-    CertificationDetail
+    CertificationDetail, QualificationTracking
 from user.models import User
 
 
@@ -99,6 +99,12 @@ class DemandDetailSerializer(serializers.ModelSerializer):
 class CertificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Certification
+        fields = '__all__'
+
+
+class QualificationTrackingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = QualificationTracking
         fields = '__all__'
 
 

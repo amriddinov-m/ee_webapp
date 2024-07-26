@@ -9,10 +9,10 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from bot.models import Project, SubProject, Discipline, Manpower, Demand, DemandDetail, Certification, \
-    CertificationDetail
+    CertificationDetail, QualificationTracking
 from bot.serializers import ProjectSerializer, SubProjectSerializer, DisciplineSerializer, ManpowerSerializer, \
     DemandSerializer, DemandDetailSerializer, CertificationSerializer, CertificationDetailSerializer, UserSerializer, \
-    LoginSerializer
+    LoginSerializer, QualificationTrackingSerializer
 from user.models import User
 
 
@@ -164,3 +164,7 @@ class LogoutView(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
+class QualificationTrackingView(viewsets.ModelViewSet):
+    queryset = QualificationTracking.objects.all()
+    serializer_class = QualificationTrackingSerializer
+    permission_classes = [AllowAny]
