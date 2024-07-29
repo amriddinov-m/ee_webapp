@@ -4,6 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from user.models import User
 
 
-# @admin.register(User)
-# class CustomUserAdmin(admin.ModelAdmin):
-#     list_display = 'username', 'status', 'email', 'is_superuser',
+@admin.register(User)
+class CustomUserAdmin(admin.ModelAdmin):
+    list_display = 'username', 'status', 'email', 'is_superuser',
