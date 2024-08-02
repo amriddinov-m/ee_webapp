@@ -168,3 +168,13 @@ class QualificationTrackingView(viewsets.ModelViewSet):
     queryset = QualificationTracking.objects.all()
     serializer_class = QualificationTrackingSerializer
     permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        queryset = self.queryset
+        demand_id = self.request.query_params.get('demand_id', None)
+
+        filters = Q()
+        if demand_id:
+            filters &= Q(demand_id=demand_id)
+
+        return queryset.filter(filters)

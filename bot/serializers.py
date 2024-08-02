@@ -39,6 +39,7 @@ class DemandSerializer(serializers.ModelSerializer):
     project_name = serializers.SerializerMethodField()
     sub_project_name = serializers.SerializerMethodField()
     creator_phone_number = serializers.SerializerMethodField()
+    creator_name = serializers.SerializerMethodField()
 
     # Поля для записи
     # project = serializers.PrimaryKeyRelatedField(queryset=Project.objects.all(), write_only=True)
@@ -59,6 +60,9 @@ class DemandSerializer(serializers.ModelSerializer):
 
     def get_creator_phone_number(self, obj):
         return obj.creator.phone_number
+
+    def get_creator_name(self, obj):
+        return obj.creator.get_full_name()
 
     class Meta:
         model = Demand
